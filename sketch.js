@@ -1,24 +1,24 @@
 /*
-Først laver vi et nogle variable til at lave en appelsin
+Først laver vi nogle variable til at lave en appelsin:
  - en kugle som vi vil skyde afsted og fange i en turban
 */
 
 // Appelsinen
-var x = 0; 
-var y = 550;
-var rad = 20;
-var xspeed = 4;
-var yspeed = -10;
-var newspeed;
-var grav = 0.1;
-var col = [200,100,0];
+let x = 0; 
+let y = 550;
+const rad = 20;
+let xspeed = 4;
+let yspeed = -10;
+let newspeed;
+const grav = 0.1;
+const col = [220,110,0];
 
 // Turbanen
-var turban;
+let turban;
 
 // Øvrige
-var tid = 150;
-var score = 0;
+let tid = 150;
+let score = 0;
 
 /* 
  * 
@@ -27,6 +27,7 @@ function setup() {
     createCanvas(750, 600);
     newspeed = yspeed;
     x = rad;
+    // parametrene til konstruktøren er (x, y, bredde, dybde, speed)
     turban = new Kurv(670, 100, 70, 50, 10);
 }
 
@@ -35,6 +36,18 @@ function draw() {
     move();
     checkScore();
     display();
+    if (keyIsDown(UP_ARROW)) {
+        turban.moveY(-5);
+    }
+    if (keyIsDown(DOWN_ARROW)) {
+        turban.moveY(5);
+    }    
+    if (keyIsDown(LEFT_ARROW)) {
+        turban.moveX(-5);
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+        turban.moveX(5);
+    } 
 }
 
 function display() {
@@ -81,12 +94,13 @@ function shootNew() {
     x = rad;
     y = 550;
     yspeed = newspeed;
-    xspeed = 6*Math.random();
+    xspeed = 3*Math.random();
     tid = (int) (Math.random() * 400);
 }
 
 function keyPressed() {
-    turban.move(key);
+    //turban.move(key);
+    return false;  // Forebygger evt. browser default behaviour
 }
 
 function mousePressed(){
@@ -105,33 +119,32 @@ OPGAVER
             stadig har en "pæn" bane
 
  Opgave 3 - lav programmet om så man også kan bevæge turbanen mod
-            højre og venstre med A- og D-tasterne. Prøv jer frem med
-            forskellige løsninger for hvor hurtigt turbanen skal rykke
+            højre og venstre med de relevante piltaster. Prøv jer frem 
+            med forskellige løsninger for hvor hurtigt turbanen skal 
+            rykke
 
  Opgave 4 - ret programmet til, så det også angives hvor mange 
             appelsiner man IKKE greb med turbanen
 
- Opgave 5 - Undersøg hvad scriptet  kurv.js  er og gør, samt hvad de 
-            funktioner, scriptet indeholder, skal bruges til. Skriv 
-            det som kommentarer oven over hver funktion. Forklar tillige,
+ Opgave 5 - Undersøg hvad scriptet  kurv.js  er og gør, og forklar 
             hvad sammenhængen mellem dette script og turbanen i hoved-
-            programmet er, og forklar det med kommentarer i toppen af 
+            programmet er. Skriv det som kommentarer i toppen af 
             kurv.js
 
- Opgave 6 - find et billede af en turban og sæt det ind i stedet 
+ Opgave 6 - Find et billede af en turban og sæt det ind i stedet 
             for firkanten. Find eventuelt også en lyd, der kan afspilles, 
             når appelsinen gribes. Se gerne i "p5 Reference" hvordan, 
             hvis ikke I kan huske det:   https://p5js.org/reference/
             Lav programmet om, så man kan flytte turbanen med musen
 
- Opgave 7 - lav en Appelsin-klasse, lige som der er en Kurv-klasse. 
+ Opgave 7 - Lav en Appelsin-klasse, lige som der er en Kurv-klasse. 
             Flyt koden til appelsinen ud i et selvstændigt script.
-            Overvej hvad det skal hedde, oghvilke variabler og funktioner, 
+            Overvej hvad det skal hedde, og hvilke variabler og funktioner, 
             der skal lægges over i det nye script, herunder hvordan det 
             kommer til at berøre turbanen. Skriv jeres overvejelser i 
             kommentarerne
 
- Opgave 8 - ret programmet til, så der kan være flere appelsiner i 
+ Opgave 8 - Ret programmet til, så der kan være flere appelsiner i 
             luften på en gang, dvs. at der kan skydes en ny appelsin
             afsted før den foregående er forsvundet. Overvej hvordan 
             og hvor hurtigt de skal skydes af, og forklar jeres tanker
