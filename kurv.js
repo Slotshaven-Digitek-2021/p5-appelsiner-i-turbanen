@@ -28,14 +28,14 @@ class Kurv {
      */
     moveX = function(flyt) {
         this.x += flyt;
-        if (this.x < 0) {this.x = 0};
-        if (this.x > width-this.bred) {this.x = width - this.bred};
+        if (this.x < 0) {this.x = 0;};
+        if (this.x > width-this.bred) {this.x = width - this.bred;};
     }
 
     moveY = function(flyt) {
         this.y += flyt;
-        if (this.y < 0) {this.y = 0};
-        if (this.y > height-this.dyb) {this.y = height - this.dyb};
+        if (this.y < 0) {this.y = 0;};
+        if (this.y > height-this.dyb) {this.y = height - this.dyb;};
     }
 
     /* Tjekker om bolden/appelsinen er grebet ved at se om den rammer
