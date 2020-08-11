@@ -99,13 +99,13 @@ function shootNew() {
 }
 
 function keyPressed() {
-    // Gør ingenting lige nu
+    // Funktionen gør ingenting lige nu
     return false;  // Forebygger evt. browser default behaviour
 }
 
 /*
 OPGAVER
- Opgave 1 - undersøg hvad variablerne  grav  og  tid  bruges til.
+ Opgave 1 - undersøg hvad variablerne  grav  og  tid  bruges til, og hvor.
             Skriv det i kommentarer, prøv at se hvad der sker, når
             I laver dem om. 
 
@@ -128,8 +128,7 @@ OPGAVER
             for firkanten. Find eventuelt også en lyd, der kan afspilles, 
             når appelsinen gribes. Se gerne i "p5 Reference" hvordan, 
             hvis ikke I kan huske det:   https://p5js.org/reference/
-            Lav programmet om, så man kan flytte turbanen med musen
-
+            
  Opgave 6 - Lav en Appelsin-klasse, lige som der er en Kurv-klasse. 
             Flyt koden til appelsinen ud i et selvstændigt script.
             Overvej hvad det skal hedde, og hvilke variabler og funktioner, 
@@ -140,15 +139,18 @@ OPGAVER
  Opgave 7 - Ret programmet til, så der kan være flere appelsiner i 
             luften på en gang, dvs. at der kan skydes en ny appelsin
             afsted før den foregående er forsvundet. Overvej hvordan 
-            og hvor hurtigt de skal skydes af, og forklar jeres tanker
+            og hvor hurtigt de skal skydes af, for at det kan gøre spillet
+            sjovere og mere udfordrende, og forklar jeres tanker
             i kommentarerne
 
- Opgave 8 - ret programmet til, så det kan vindes og/eller tabes ved
+ Opgave 8 - Ret programmet til, så det kan vindes og/eller tabes ved
             at man griber eller misser et antal appelsiner. Sørg for 
             at der vises en "Game Over"-skærm, som fortæller om man 
             vandt eller tabte, og som giver mulighed for at starte et
             nyt spil. Se evt. om I kan lave en løsning så turbanens
             bevægelseshastighed, skydetempoet med appelsinerne og andre
-            ting kan justeres mens man spiller
+            ting kan justeres mens man spiller. Lav evt. programmet om, 
+            så man kan flytte turbanen med musen
+
 
 */
