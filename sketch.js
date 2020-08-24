@@ -10,7 +10,7 @@ const rad = 20;
 let xspeed = 4;
 let yspeed = -10;
 let newspeed;
-const grav = 0.1;
+const grav = 0.1; // acceleration i nedadgående retning, lige som tyngde
 const col = [220,110,0];
 
 // Turbanen
@@ -19,48 +19,75 @@ let turban;
 // Øvrige
 let tid = 150;
 let score = 0;
+let missed = 0;
+let liv = 8;
+let spilIgang = true;   //flag
 
 /* 
  * 
  */
-function setup() {
+function setup() {  // kører kun en gang, når programmet startes
     createCanvas(750, 600);
+    genstartKnap = createButton('Genstart');
+    genstartKnap.position(100,20);
+    genstartKnap.mousePressed(restart);
+    genstartKnap.hide();
+    textAlign(CENTER, CENTER);
+
     newspeed = yspeed;
     x = rad;
-    // parametrene til konstruktøren er (x, y, bredde, dybde, speed)
+    // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
     turban = new Kurv(670, 100, 70, 50, 10);
+    // parametrene til Frugt-konstruktøren er (x, y, radius, xspeed, yspeed, farve)
+    appelsin = new Frugt(20, 330, 20, 4, -10, [110,220,0]);
 }
 
 function draw() {
     background(0);
-    move();
-    checkScore();
-    display();
-    if (keyIsDown(UP_ARROW)) {
-        turban.moveY(-5);
+    
+    if (spilIgang) {
+        move();
+        appelsin.move2();
+        checkScore();
+        appelsin.checkScore2();
+        display();
+        appelsin.display2();
+        if (keyIsDown(UP_ARROW)) {
+            turban.moveY(-5);
+        }
+        if (keyIsDown(DOWN_ARROW)) {
+            turban.moveY(5);
+        }    
+        if (keyIsDown(LEFT_ARROW)) {
+            turban.moveX(-5);
+        }
+        if (keyIsDown(RIGHT_ARROW)) {
+            turban.moveX(5);
+        } 
     }
-    if (keyIsDown(DOWN_ARROW)) {
-        turban.moveY(5);
-    }    
-    if (keyIsDown(LEFT_ARROW)) {
-        turban.moveX(-5);
+    else {  // så er Game Over det der skal vises
+        fill(col);
+        textSize(46);
+        text("Game Over",width/2 + random(-5,5), height/2 + random(3 ));
+        text("Score: "+score, width/2, height/2 + 50);
     }
-    if (keyIsDown(RIGHT_ARROW)) {
-        turban.moveX(5);
-    } 
 }
 
 function display() {
     fill(255);
+    textSize(12);
     text("Score: "+score, width-80, 30);
+    text("Liv: " + liv, width-160, 30);
     
     //Her skal vi sørge for at appelsinen bliver vist, hvis den skal vises
     if(tid > 0) {
         tid -= 1;
     }
     if (tid < 100) {
+        //appelsin.display();
         fill(col);
         ellipse(x, y, rad*2, rad*2);
+
     }
 
     // Her vises turbanen - foreløbig blot en firkant
@@ -75,6 +102,14 @@ function move() {
         yspeed += grav;
     }
     if (x > width || y > height) {
+        missed += 1;
+        liv -= 1;
+        if (liv < 1) {
+            spilIgang = false;
+            genstartKnap.show();
+
+            //restart();
+        }
         shootNew();
     }
 }
@@ -94,8 +129,18 @@ function shootNew() {
     x = rad;
     y = 550;
     yspeed = newspeed;
-    xspeed = 3*Math.random();
-    tid = (int) (Math.random() * 400);
+    xspeed = random(4);
+    tid = random(400);
+}
+
+
+function restart() {
+    liv = 10;
+    missed = 0;
+    score = 0;
+    spilIgang = true;
+    genstartKnap.hide();
+    appelsin.genstartPos();
 }
 
 function keyPressed() {
