@@ -47,11 +47,11 @@ function draw() {
     
     if (spilIgang) {
         move();
-        appelsin.move2();
+        appelsin.move();
         checkScore();
-        appelsin.checkScore2();
+        appelsin.checkScore();
+        appelsin.display();
         display();
-        appelsin.display2();
         if (keyIsDown(UP_ARROW)) {
             turban.moveY(-5);
         }

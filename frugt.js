@@ -16,17 +16,16 @@ class Frugt {
         console.log("Limefrugt er lavet, gravitation er "+grav);
     }  
 
-    display2 = function() {
+    display = function() {
         fill(this.col);
         ellipse(this.x, this.y, this.r*2, this.r*2);
     }
 
     //Her skal vi sørge for at frugten bevæger sig, hvis den er startet
-    move2 = function() {
+    move = function() {
         this.x += this.xspeed;
         this.y += this.yspeed;
         this.yspeed += grav;
-        console.log("Yspeed er nu "+this.yspeed);
         if (this.x > width || this.y > height) {
             missed += 1;
             liv -= 1;
@@ -37,7 +36,7 @@ class Frugt {
                 //restart();
             }
             console.log("Afskyder ny lime");
-            this.shootNew2();
+            this.shootNew();
         }
     }
 
@@ -49,17 +48,17 @@ class Frugt {
     }
 
     //Her skal vi sørge for at en ny frugt skydes afsted 
-    shootNew2 = function() {
-        console.log("ShootNew2 kaldes");
+    shootNew = function() {
+        console.log("ShootNew kaldes");
         this.genstartPos();
     }
 
 
-    checkScore2 = function() {
+    checkScore = function() {
         if (this.yspeed > 0) {
             if (turban.grebet(this.x, this.y, this.r)) {
                 score += 1;
-                this.shootNew2(); 
+                this.shootNew(); 
             }
         }
     }
