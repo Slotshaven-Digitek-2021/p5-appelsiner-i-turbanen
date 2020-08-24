@@ -140,7 +140,6 @@ function restart() {
     score = 0;
     spilIgang = true;
     genstartKnap.hide();
-    appelsin.genstartPos();
 }
 
 function keyPressed() {
