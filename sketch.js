@@ -28,18 +28,13 @@ let spilIgang = true;   //flag
  */
 function setup() {  // kører kun en gang, når programmet startes
     createCanvas(750, 600);
-    genstartKnap = createButton('Genstart');
-    genstartKnap.position(100,20);
-    genstartKnap.mousePressed(restart);
-    genstartKnap.hide();
+
     textAlign(CENTER, CENTER);
 
     newspeed = yspeed;
     x = rad;
     // parametrene til Kurv-konstruktøren er (x, y, bredde, dybde, speed)
     turban = new Kurv(670, 100, 70, 50, 10);
-    // parametrene til Frugt-konstruktøren er (x, y, radius, xspeed, yspeed, farve)
-    appelsin = new Frugt(20, 330, 20, 4, -10, [110,220,0]);
 }
 
 function draw() {
@@ -47,10 +42,7 @@ function draw() {
     
     if (spilIgang) {
         move();
-        appelsin.move();
         checkScore();
-        appelsin.checkScore();
-        appelsin.display();
         display();
         if (keyIsDown(UP_ARROW)) {
             turban.moveY(-5);
@@ -84,7 +76,6 @@ function display() {
         tid -= 1;
     }
     if (tid < 100) {
-        //appelsin.display();
         fill(col);
         ellipse(x, y, rad*2, rad*2);
 
@@ -106,9 +97,6 @@ function move() {
         liv -= 1;
         if (liv < 1) {
             spilIgang = false;
-            genstartKnap.show();
-
-            //restart();
         }
         shootNew();
     }
@@ -133,14 +121,6 @@ function shootNew() {
     tid = random(400);
 }
 
-
-function restart() {
-    liv = 10;
-    missed = 0;
-    score = 0;
-    spilIgang = true;
-    genstartKnap.hide();
-}
 
 function keyPressed() {
     // Funktionen gør ingenting lige nu
