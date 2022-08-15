@@ -10,7 +10,7 @@ const rad = 20;
 let xspeed = 4;
 let yspeed = -10;
 let newspeed;
-const grav = 0.1; // acceleration i nedadgående retning, lige som tyngde
+const grav = 0.1; 
 const col = [220,110,0];
 
 // Turbanen
